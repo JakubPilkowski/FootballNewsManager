@@ -1,12 +1,14 @@
 const path = require('path');
+
+// const icon = require("./assets/images/logo.png")
 module.exports = function (api) {
   api.cache(true);
   return {
     presets: [
       'babel-preset-expo',
-      {
-        lazyImports: true,
-      },
+      // {
+      //   lazyImports: true,
+      // },
     ],
     plugins: [
       'lodash',
@@ -26,9 +28,9 @@ module.exports = function (api) {
             '.ios.ts',
           ],
           alias: {
-            fonts: './assets/fonts',
-            images: './assets/images',
-            locales: './assets/locales',
+            // fonts: './assets/fonts',
+            // images: './assets/images',
+            // locales: './assets/locales',
             api: './src/api',
             common: './src/common',
             hooks: './src/hooks',
