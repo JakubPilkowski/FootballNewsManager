@@ -1,9 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-interface AppProps {
-  text: unknown;
-  function: () => void;
-}
+import { Text, View } from 'react-native';
 
 import * as Sentry from '@sentry/react-native';
 
@@ -12,6 +8,10 @@ Sentry.init({
   enableNative: false,
 });
 
-export default function App({ text }: AppProps) {
-  return <View />;
+export default function App() {
+  return (
+    <View>
+      <Text>Halo halo</Text>
+    </View>
+  );
 }
