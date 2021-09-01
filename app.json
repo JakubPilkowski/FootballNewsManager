@@ -7,18 +7,19 @@
     "sdkVersion": "42.0.0",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#FFFFFF",
-    "icon": "./assets/icon.png",
+    "primaryColor": "#006400",
+    "icon": "./assets/images/logo.png",
     "notification": {
-      "icon": "./assets/icon.png",
-      "color": "#ffffff",
+      "icon": "./assets/images/icon.png",
+      "color": "#006400",
       "iosDisplayInForeground": true,
       "androidMode": "collapse",
       "androidCollapsedTitle": "New news for your teams"
     },
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#006400"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -30,9 +31,9 @@
       "supportsTablet": true
     },
     "android": {
+      "icon": "./assets/images/logo.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/images/logo.png"
       },
       "versionCode": 1
     },
