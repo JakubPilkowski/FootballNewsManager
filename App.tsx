@@ -13,7 +13,5 @@ Sentry.init({
 });
 
 export default function App({ text }: AppProps) {
-  Sentry.nativeCrash();
-
   return <View />;
 }
