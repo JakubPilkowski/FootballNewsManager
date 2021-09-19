@@ -1,7 +1,0 @@
-Permisje do zarządzania schemą postgresową
-grant usage on schema public to username;
-grant create on schema public to username;
-Priviliges dla usera do korzystania z bazy
-GRANT ALL PRIVILEGES ON DATABASE footballnewsmanager TO fnmadmin;
-Tworzenie usera
-create user tmp with password 'tmp12345'
