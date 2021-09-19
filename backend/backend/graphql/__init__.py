@@ -1,7 +1,7 @@
 
 import graphene
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value="Hi!")
+from backend.graphql.queries import Query
+from backend.graphql.mutations import Mutation
 
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query, mutation=Mutation)
