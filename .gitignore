@@ -8,7 +8,11 @@ front/npm-debug.*
 *.mobileprovision
 *.orig.*
 front/web-build/
-back/env
+backend/.env
+backend/credentials.py
+backend/__pycache__
+backend/*.pyc
+backend/notes.txt
 
 
 # macOS
