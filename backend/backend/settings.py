@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 from credentials import DEFAULT_FROM_EMAIL, EMAIL_HOST, EMAIL_PORT,EMAIL_HOST_USER, EMAIL_USE_TLS, EMAIL_HOST_PASSWORD
@@ -17,18 +18,11 @@ from credentials import DEFAULT_FROM_EMAIL, EMAIL_HOST, EMAIL_PORT,EMAIL_HOST_US
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '4=!m0%igh0sm-h0c^(b8u!nep250t*xmf9-k)_@m1wg@9_emd-'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,7 +83,7 @@ GRAPHQL_AUTH = {
     'LOGIN_ALLOWED_FIELDS': ['email'],
     'REGISTER_MUTATION_FIELDS': ['email'],
     'UPDATE_MUTATION_FIELDS': [],
-    # 'USER_NODE_EXCLUDE_FIELDS': ['username'],
+    'USER_NODE_EXCLUDE_FIELDS': ['username'],
     'ALLOW_LOGIN_NOT_VERIFIED': False,
     'USER_NODE_FILTER_FIELDS': {
         "email": ["exact",],
@@ -97,10 +91,13 @@ GRAPHQL_AUTH = {
         "status__archived": ["exact"],
         "status__verified": ["exact"],
         "status__secondary_email": ["exact"],
+    },
+    "EMAIL_TEMPLATE_ACTIVATION_RESEND": "email/activation_email_resend.html",
+    "EMAIL_TEMPLATE_VARIABLES": {
+        "logo_url": "../static/images/fnm_logo_light_green.png"
     }
 }
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
 EMAIL_HOST=  EMAIL_HOST
 EMAIL_PORT= EMAIL_PORT
@@ -113,7 +110,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
