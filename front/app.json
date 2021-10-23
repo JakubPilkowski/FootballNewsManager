@@ -7,11 +7,11 @@
     "sdkVersion": "42.0.0",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#FFFFFF",
-    "primaryColor": "#006400",
+    "primaryColor": "#6bba62",
     "icon": "./assets/images/logo.png",
     "notification": {
       "icon": "./assets/images/icon.png",
-      "color": "#006400",
+      "color": "#6bba62",
       "iosDisplayInForeground": true,
       "androidMode": "collapse",
       "androidCollapsedTitle": "New news for your teams"
@@ -19,7 +19,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#006400"
+      "backgroundColor": "#6bba62"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

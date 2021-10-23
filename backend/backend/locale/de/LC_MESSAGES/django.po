@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-19 21:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\fnm\models.py:42
+msgid "staff status"
+msgstr ""
+
+#: .\fnm\models.py:45
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: .\fnm\models.py:50
+msgid "active"
+msgstr ""
+
+#: .\fnm\models.py:53
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: .\fnm\models.py:59
+msgid "date joined"
+msgstr ""
+
+#: .\settings.py:182
+msgid "English"
+msgstr ""
+
+#: .\settings.py:183
+msgid "German"
+msgstr ""
+
+#: .\settings.py:184
+msgid "French"
+msgstr ""
+
+#: .\settings.py:185
+msgid "Spanish"
+msgstr ""
+
+#: .\settings.py:186
+msgid "Italian"
+msgstr ""
+
+#: .\settings.py:187
+msgid "Polish"
+msgstr ""
+
+msgid "football_news_manager"
+msgstr "Football News Manager"
+
+msgid "hello"
+msgstr "Hallo"
+
+msgid "complete_registration_message"
+msgstr "Um den Registrierungsprozess abzuschließen, klicken Sie auf die Schaltfläche unten"
+
+msgid "activate_account"
+msgstr "Konto aktivieren"
