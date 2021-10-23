@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@sentry/react-native": "^2.6.2",
     "babel-plugin-inline-dotenv": "^1.6.0",
     "babel-preset-expo": "^8.4.1",
@@ -21,6 +22,7 @@
     "expo-device": "~3.3.0",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.2",
+    "graphql": "^15.6.1",
     "lodash": "^4.17.21",
     "nanoid": "^3.1.23",
     "react": "^17.0.2",
