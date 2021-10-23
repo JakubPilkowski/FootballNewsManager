@@ -10,7 +10,7 @@ front/npm-debug.*
 front/web-build/
 backend/.env
 backend/credentials.py
-backend/__pycache__
+**/backend/__pycache__
 backend/*.pyc
 backend/notes.txt
 

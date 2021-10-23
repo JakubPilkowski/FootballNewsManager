@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 from pathlib import Path
 from datetime import timedelta
 from credentials import DEFAULT_FROM_EMAIL, EMAIL_HOST, EMAIL_PORT,EMAIL_HOST_USER, EMAIL_USE_TLS, EMAIL_HOST_PASSWORD
@@ -92,9 +93,9 @@ GRAPHQL_AUTH = {
         "status__verified": ["exact"],
         "status__secondary_email": ["exact"],
     },
-    "EMAIL_TEMPLATE_ACTIVATION_RESEND": "email/activation_email_resend.html",
     "EMAIL_TEMPLATE_VARIABLES": {
-        "logo_url": "../static/images/fnm_logo_light_green.png"
+        "logo_url": "../static/images/fnm_logo_light_green.png",
+        "app_name": _('football_news_manager'),
     }
 }
 
@@ -173,6 +174,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGE_PATHS = [
+    os.path.join(BASE_DIR, 'backend/locale')  # app folder
+]
+
+LANGUAGES = [
+   ('en', _('English')),
+   ('de', _('German')),
+   ('fr', _('French')),
+   ('es', _('Spanish')),
+   ('it', _('Italian')),
+   ('pl', _('Polish'))
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
