@@ -1,19 +1,20 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 
 import { setContext } from '@apollo/client/link/context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import typePolicies from './typePolicies';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://d972-81-190-133-87.ngrok.io/graphql',
 });
 
-const authLink = setContext((_, { headers }) => {
-  // const token = localStorage.getItem('token');
+const authLink = setContext(async (_, { headers }) => {
+  const token = await AsyncStorage.getItem('authentication_token');
   return {
     headers: {
       ...headers,
-      // authorization: token ? `Bearer ${token}` : "",
+      authorization: token || '',
     },
   };
 });
@@ -23,6 +24,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies,
   }),
+});
+
+client.onResetStore(async () => {
+  AsyncStorage.removeItem('authentication_token');
 });
 
 export default client;

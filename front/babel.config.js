@@ -1,6 +1,5 @@
 const path = require('path');
 
-// const icon = require("./assets/images/logo.png")
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -29,13 +28,15 @@ module.exports = function (api) {
           ],
           alias: {
             // fonts: './assets/fonts',
-            // images: './assets/images',
+            assets: './src/assets',
             // locales: './assets/locales',
             api: './src/api',
             common: './src/common',
             hooks: './src/hooks',
             utils: './src/utils',
             views: './src/views',
+            mutations: './src/api/mutations',
+            queries: './src/api/queries',
           },
         },
       ],
