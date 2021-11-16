@@ -8,16 +8,20 @@
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#FFFFFF",
     "primaryColor": "#6bba62",
-    "icon": "./assets/images/logo.png",
+    "icon": "./src/assets/images/logo.png",
+    "androidNavigationBar": {
+      "backgroundColor": "#222222",
+      "barStyle": "light-content"
+    },
     "notification": {
-      "icon": "./assets/images/icon.png",
+      "icon": "./src/assets/images/icon.png",
       "color": "#6bba62",
       "iosDisplayInForeground": true,
       "androidMode": "collapse",
       "androidCollapsedTitle": "New news for your teams"
     },
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#6bba62"
     },
@@ -31,9 +35,9 @@
       "supportsTablet": true
     },
     "android": {
-      "icon": "./assets/images/logo.png",
+      "icon": "./src/assets/images/logo.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png"
+        "foregroundImage": "./src/assets/images/logo.png"
       },
       "versionCode": 1
     },
