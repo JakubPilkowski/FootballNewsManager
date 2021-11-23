@@ -1,13 +1,20 @@
 import React, { memo, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { View, ViewStyle } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/core';
-import { RootStackParamList } from 'commmon/Routing/Routing';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation } from '@apollo/client';
+
 import { LOGIN, LoginResponse, LoginVariables } from 'api/mutations/auth';
-import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
+
+import { RootStackParamList } from 'common/Routing/Routing';
+import LanguageToggle from 'common/LanguageToggle';
+
 import { MainStackParamList } from 'views/Main/Main';
+import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from 'i18n/i18n';
+import ThemedButton from 'common/ThemedButton/ThemedButton';
 
 type LoginProps = {};
 
@@ -18,22 +25,20 @@ type LoginNavigationProp = CompositeNavigationProp<
   MaterialBottomTabNavigationProp<MainStackParamList>
 >;
 
+const loginButtonStyles = {
+  marginTop: 40,
+} as ViewStyle;
+
 const Login: React.FC<LoginProps> = () => {
+  const { t } = useTranslation<NAMESPACES>('auth');
+
   const navigation = useNavigation<LoginNavigationProp>();
 
   const [login] = useMutation<LoginResponse, LoginVariables>(LOGIN);
 
-  const handleGoRegister = () => {
-    navigation.navigate('Register');
+  const handleNavigate = (route: keyof RootStackParamList | keyof MainStackParamList) => () => {
+    navigation.navigate(route);
   };
-
-  const handleGoForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
-  };
-
-  useEffect(() => {
-    // AsyncStorage.setItem('authentication_token', '');
-  }, []);
 
   const handleLogin = () => {
     login({
@@ -43,9 +48,8 @@ const Login: React.FC<LoginProps> = () => {
       },
     })
       .then(({ data }) => {
-        console.log(data);
         AsyncStorage.setItem('authentication_token', data?.tokenAuth.token as string);
-        navigation.navigate('News');
+        navigation.navigate('Main');
       })
       .catch((err) => {
         console.log(err);
@@ -53,13 +57,21 @@ const Login: React.FC<LoginProps> = () => {
   };
 
   return (
-    <View>
-      <Text>Login</Text>
-      <Button onPress={handleLogin} title="Login" />
-      <Text>No Account?</Text>
-      <Button onPress={handleGoRegister} title="Register" />
-      <Text>Forgot Password?</Text>
-      <Button onPress={handleGoForgotPassword} title="Forgot Password" />
+    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <View>
+        <ThemedButton onPress={handleLogin} styles={loginButtonStyles} title={t('login')} />
+        <ThemedButton
+          onPress={handleNavigate('Register')}
+          styles={loginButtonStyles}
+          title={t('register')}
+        />
+        <ThemedButton
+          onPress={handleNavigate('ForgotPassword')}
+          styles={loginButtonStyles}
+          title={t('forgot_password')}
+        />
+      </View>
+      <LanguageToggle />
     </View>
   );
 };

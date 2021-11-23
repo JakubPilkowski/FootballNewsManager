@@ -8,8 +8,8 @@ import Main from 'views/Main';
 import Register from 'views/Register';
 
 import AuthenticationRoute from './AuthenticationRoute';
-import Settings from 'views/Settings';
-import ContentView from 'views/ContentView';
+// import Settings from 'views/Settings';
+// import ContentView from 'views/ContentView';
 import { MainStackParamList } from 'views/Main/Main';
 
 export type RootStackParamList = {

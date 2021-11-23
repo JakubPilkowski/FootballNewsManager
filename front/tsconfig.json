@@ -5,14 +5,16 @@
     "strictPropertyInitialization": true,
     "baseUrl": "./src",
     "paths": {
-      "commmon/*": ["./common/*"],
+      "common/*": ["./common/*"],
       "assets/*": ["./assets/*"],
       "api/*": ["./api/*"],
       "hooks/*": ["./hooks/*"],
       "utils/*": ["./utils/*"],
       "views/*": ["./views/*"],
       "mutations/*": ["./api/mutations/*"],
-      "queries/*": ["./api/queries/*"]
+      "queries/*": ["./api/queries/*"],
+      "types/*": ["./types/*"],
+      "i18n/*": ["./i18n/*"]
     }
   },
   "extends": "expo/tsconfig.base"
