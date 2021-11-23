@@ -37,6 +37,8 @@ module.exports = function (api) {
             views: './src/views',
             mutations: './src/api/mutations',
             queries: './src/api/queries',
+            types: './src/types',
+            i18n: './src/i18n',
           },
         },
       ],

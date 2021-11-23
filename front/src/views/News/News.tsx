@@ -1,11 +1,14 @@
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/core';
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import client from 'api/client';
-import { RootStackParamList } from 'commmon/Routing/Routing';
 import React, { memo } from 'react';
 import { View, Text, Button } from 'react-native';
-import { MainStackParamList } from 'views/Main/Main';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
+
+import client from 'api/client';
+
+import { RootStackParamList } from 'common/Routing/Routing';
+
+import { MainStackParamList } from 'views/Main/Main';
 
 type NewsNavigationProp = CompositeNavigationProp<
   MaterialBottomTabNavigationProp<MainStackParamList, 'News'>,

@@ -25,6 +25,8 @@ module.exports = {
           ['views', './src/views'],
           ['mutations', './src/api/mutations'],
           ['queries', './src/api/queries'],
+          ['types', './src/types'],
+          ['i18n', './src/i18n'],
         ],
       },
     },
@@ -71,7 +73,7 @@ module.exports = {
     'react/jsx-closing-tag-location': 1,
     'react/jsx-first-prop-new-line': [1, 'multiline'],
     'react/jsx-handler-names': [
-      'error',
+      'warn',
       {
         eventHandlerPrefix: 'handle',
         eventHandlerPropPrefix: 'on',
@@ -109,19 +111,17 @@ module.exports = {
       },
     ],
     '@typescript-eslint/consistent-indexed-object-style': [1, 'index-signature'], //disallow using Record
-    '@typescript-eslint/consistent-type-definitions': [2, 'type'], // only interfaces
-    // '@typescript-eslint/consistent-type-imports': [2, { prefer: 'type-imports' }],
     '@typescript-eslint/explicit-member-accessibility': 0, // for typescript classes properties accessibility
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/method-signature-style': [1, 'property'],
     '@typescript-eslint/no-base-to-string': 2,
     '@typescript-eslint/no-confusing-non-null-assertion': 1,
-    '@typescript-eslint/no-empty-interface': [
-      1,
-      {
-        allowSingleExtends: false,
-      },
-    ],
+    // '@typescript-eslint/no-empty-interface': [
+    //   1,
+    //   {
+    //     allowSingleExtends: false,
+    //   },
+    // ],
     '@typescript-eslint/no-explicit-any': [
       1,
       {
