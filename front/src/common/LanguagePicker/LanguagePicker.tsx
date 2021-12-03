@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import { ScrollViewProps } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import DropDownPicker, { ValueType } from 'react-native-dropdown-picker';
 
@@ -14,8 +15,7 @@ import {
   selectedItemContainerStyles,
   selectedItemLabelStyles,
   styles,
-} from './LanguageToggle.styles';
-import { ScrollViewProps } from 'react-native';
+} from './LanguagePicker.styles';
 
 const scrollViewProps = {
   decelerationRate: 'fast',
@@ -30,7 +30,7 @@ const scrollViewProps = {
   },
 } as ScrollViewProps;
 
-const LanguageToggle = () => {
+const LanguagePicker = () => {
   const { t, i18n } = useTranslation();
 
   const [language, setLanguage] = useState<LANGUAGE_CODE_TYPE>(i18n.language as LANGUAGE_CODE_TYPE);
@@ -70,4 +70,4 @@ const LanguageToggle = () => {
   );
 };
 
-export default memo(LanguageToggle);
+export default memo(LanguagePicker);

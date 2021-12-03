@@ -104,6 +104,7 @@ i18n
     fallbackLng: 'en',
     defaultNS: 'base',
     resources,
+    compatibilityJSON: 'v3',
     keySeparator: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

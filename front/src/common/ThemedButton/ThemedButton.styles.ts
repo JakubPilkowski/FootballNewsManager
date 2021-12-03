@@ -1,17 +1,22 @@
+import { Theme } from 'assets/styles/themes';
 import { StyleProp, TextStyle, View, ViewStyle, StyleSheet } from 'react-native';
 
 import { ThemedButtonVariant } from './ThemedButton';
 
-function getVariantButtonStyles(variant: ThemedButtonVariant): ViewStyle {
+function getVariantButtonStyles(variant: ThemedButtonVariant, theme: Theme): ViewStyle {
+  const { colors, layout } = theme;
   switch (variant) {
     case 'filled':
       return {
-        backgroundColor: '#6bba62',
-        paddingHorizontal: 50,
-        paddingVertical: 10,
-        borderRadius: 1,
+        backgroundColor: colors.primary,
+        paddingHorizontal: layout.paddingXXL,
+        paddingVertical: layout.paddingM,
+        flex: 0,
+        maxWidth: '80%',
+        alignSelf: 'center',
+        borderRadius: layout.borderRadiusSmall,
         elevation: 4,
-        shadowColor: '#222222',
+        shadowColor: colors.textDark,
         shadowOffset: {
           width: 4,
           height: 4,
@@ -21,13 +26,15 @@ function getVariantButtonStyles(variant: ThemedButtonVariant): ViewStyle {
     case 'outlined':
       return {
         backgroundColor: 'transparent',
-        paddingHorizontal: 50,
-        paddingVertical: 10,
-        borderRadius: 1,
-        borderColor: '#6bba62',
+        paddingHorizontal: layout.paddingXXL,
+        paddingVertical: layout.paddingM,
+        flex: 0,
+        alignSelf: 'center',
+        borderRadius: layout.borderRadiusSmall,
+        borderColor: colors.primary,
         borderWidth: 1,
         elevation: 4,
-        shadowColor: '#222222',
+        shadowColor: colors.textDark,
         shadowOffset: {
           width: 4,
           height: 4,
@@ -37,50 +44,47 @@ function getVariantButtonStyles(variant: ThemedButtonVariant): ViewStyle {
     case 'underline':
       return {
         backgroundColor: 'transparent',
-        paddingHorizontal: 5,
+        flex: 0,
+        paddingHorizontal: layout.paddingXS,
         paddingVertical: 2,
       };
   }
 }
 
-function getVariantTextStyles(variant: ThemedButtonVariant): TextStyle {
+function getVariantTextStyles(variant: ThemedButtonVariant, theme: Theme): TextStyle {
+  const { colors } = theme;
+
   switch (variant) {
     case 'filled':
       return {
-        color: '#fff',
+        color: colors.textLight,
         textAlign: 'center',
       };
     case 'outlined':
       return {
-        color: '#6bba62',
+        color: colors.primary,
         textAlign: 'center',
       };
     case 'underline':
       return {
-        color: '#fff',
+        color: colors.textLight,
         textAlign: 'center',
-        textDecorationColor: '#fff',
+        textDecorationColor: colors.textLight,
         textDecorationLine: 'underline',
         textDecorationStyle: 'solid',
       };
   }
 }
 
-export function themedButtonStyles(variant: ThemedButtonVariant) {
-  //   const styles = StyleSheet.create({
-  //     button: getVariantButtonStyles(variant),
-  //   });
-
-  //   return styles.button as Partial<StyleProp<any>>;
-  return getVariantButtonStyles(variant);
+export function themedButtonStyles(variant: ThemedButtonVariant, theme: Theme) {
+  return getVariantButtonStyles(variant, theme);
 }
 
-export function themedButtonTextStyles(variant: ThemedButtonVariant) {
-  //   const styles = StyleSheet.create({
-  //     text: getVariantTextStyles(variant),
-  //   });
-
-  return getVariantTextStyles(variant);
-
-  //   return styles.text as Partial<StyleProp<any>>;
+export function themedButtonTextStyles(variant: ThemedButtonVariant, theme: Theme) {
+  return {
+    ...theme.fonts.fontL,
+    fontWeight: 'bold',
+    letterSpacing: 0.7,
+    ...getVariantTextStyles(variant, theme),
+  };
 }
