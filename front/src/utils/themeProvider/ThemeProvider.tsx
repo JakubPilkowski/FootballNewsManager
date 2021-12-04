@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { EventSubscription } from 'react-native';
 import {
   Appearance,
@@ -7,13 +7,15 @@ import {
   useColorScheme,
 } from 'react-native-appearance';
 
-import themes, { Theme } from 'assets/styles/themes';
-
-import { ThemeContext } from './ThemeContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAsyncStorage from 'hooks/useAsyncStorage';
 
-const ThemeProvider: React.FC = ({ children }) => {
+import themes from 'assets/styles/themes';
+
+import { ThemeContext } from './ThemeContext';
+
+type ThemeProviderProps = { [key: string]: unknown };
+
+const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const colorScheme = useColorScheme();
 
   const [scheme, setScheme] = useAsyncStorage('scheme', colorScheme);
@@ -22,6 +24,10 @@ const ThemeProvider: React.FC = ({ children }) => {
 
   const changeTheme = useCallback(
     ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
+      console.log('colorScheme');
+      console.log(colorScheme);
+      // TODO: expo eject to android/ios app
+      // changeNavigationBarColor('#80b3ff', true, true);
       setScheme(colorScheme);
     },
     [setScheme]

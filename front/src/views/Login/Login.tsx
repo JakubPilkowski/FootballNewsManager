@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { StatusBar, View, ViewStyle } from 'react-native';
+import { StatusBar, View, Text, ViewStyle } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/core';
@@ -17,6 +17,7 @@ import { NAMESPACES } from 'i18n/i18n';
 import ThemedButton from 'common/ThemedButton/ThemedButton';
 import useTheme from 'utils/themeProvider/useTheme';
 import ThemedSwitch, { OnSwitchToggle } from 'common/ThemedSwitch/ThemedSwitch';
+import ViewWrapper from 'common/ViewWrapper';
 
 type LoginProps = {};
 
@@ -28,7 +29,7 @@ type LoginNavigationProp = CompositeNavigationProp<
 >;
 
 const loginButtonStyles = {
-  marginTop: 40,
+  // marginTop: 40,
 } as ViewStyle;
 
 const Login: React.FC<LoginProps> = () => {
@@ -71,13 +72,7 @@ const Login: React.FC<LoginProps> = () => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'space-between',
-        backgroundColor: theme.colors.layoutMedium,
-      }}>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+    <ViewWrapper>
       <View>
         <ThemedButton onPress={handleLogin} styles={loginButtonStyles} title={t('login')} />
         <ThemedButton
@@ -91,11 +86,27 @@ const Login: React.FC<LoginProps> = () => {
           title={t('forgot_password')}
         />
       </View>
+      {/* <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        <Text>Hello</Text>
+      </View>
+      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        <Text>Hello</Text>
+      </View>
+      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        <Text>Hello</Text>
+      </View>
+      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        <Text>Hello</Text>
+      </View>
+      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        <Text>Hello</Text>
+      </View>
+      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        <Text>Hello</Text>
+      </View> */}
 
-      <ThemedSwitch checked={checked} label="Ciemny motyw" onToggle={handleDarkModeToggle} />
-
-      <LanguagePicker />
-    </View>
+      <ThemedSwitch checked={checked} onToggle={handleDarkModeToggle} label="Scheme" />
+    </ViewWrapper>
   );
 };
 

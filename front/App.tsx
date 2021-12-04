@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { I18nextProvider } from 'react-i18next';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Sentry from '@sentry/react-native';
 
 import client from 'api/client';
@@ -20,9 +21,11 @@ export default function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <ApolloProvider client={client}>
-        <ThemeProvider>
-          <Routing />
-        </ThemeProvider>
+        <SafeAreaProvider>
+          <ThemeProvider>
+            <Routing />
+          </ThemeProvider>
+        </SafeAreaProvider>
       </ApolloProvider>
     </I18nextProvider>
   );

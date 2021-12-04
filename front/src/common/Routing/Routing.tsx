@@ -23,7 +23,7 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const Routing = () => {
+const Routing: React.FC = () => {
   return (
     <NavigationContainer>
       <AuthenticationRoute>
