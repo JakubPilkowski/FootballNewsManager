@@ -31,7 +31,7 @@ const ThemedButton: React.FC<ThemedButtonProps> = ({
       ...themedButtonStyles(variant, theme),
       ...styles,
     }),
-    [styles, variant]
+    [styles, theme, variant]
   );
 
   return (
