@@ -23,6 +23,15 @@ export default {
   },
 } as Fonts;
 
+export type FontType = {
+  fontSize: number;
+  lineHeight: number;
+};
+
 export type Fonts = {
-  [k: string]: TextStyle;
+  fontXS: FontType;
+  fontS: FontType;
+  fontM: FontType;
+  fontL: FontType;
+  fontXL: FontType;
 };

@@ -8,6 +8,7 @@ front/npm-debug.*
 *.mobileprovision
 *.orig.*
 front/web-build/
+front/yarn-error.log
 backend/.env
 backend/credentials.py
 **/backend/__pycache__

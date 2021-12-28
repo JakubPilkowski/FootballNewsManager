@@ -24,8 +24,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   const changeTheme = useCallback(
     ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
-      console.log('colorScheme');
-      console.log(colorScheme);
       // TODO: expo eject to android/ios app
       // changeNavigationBarColor('#80b3ff', true, true);
       setScheme(colorScheme);
