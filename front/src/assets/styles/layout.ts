@@ -17,8 +17,25 @@ export default {
   borderRadiusSmall: 1,
   borderRadiusMedium: 3,
   borderRadiusHuge: 6,
-};
+} as Layout;
 
 export type Layout = {
-  [k: string]: number;
+  borderSmallWidth: number;
+  borderMediumWidth: number;
+  borderHugeWidth: number;
+  marginXS: number;
+  marginS: number;
+  marginM: number;
+  marginL: number;
+  marginXL: number;
+  marginXXL: number;
+  paddingXS: number;
+  paddingS: number;
+  paddingM: number;
+  paddingL: number;
+  paddingXL: number;
+  paddingXXL: number;
+  borderRadiusSmall: number;
+  borderRadiusMedium: number;
+  borderRadiusHuge: number;
 };

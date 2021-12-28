@@ -23,7 +23,7 @@ SECRET_KEY = '4=!m0%igh0sm-h0c^(b8u!nep250t*xmf9-k)_@m1wg@9_emd-'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', "0.0.0.0", "9c78-81-190-133-87.ngrok.io"]
+ALLOWED_HOSTS = ['localhost', "0.0.0.0", "d170-81-190-133-87.ngrok.io"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

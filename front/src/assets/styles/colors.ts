@@ -4,9 +4,11 @@ export const darkThemeColors = {
   textLight: '#fff',
   textMedium: '',
   textDark: '#222222',
-  layoutLight: '',
-  layoutMedium: '#222222',
-  layoutDark: '',
+  layoutSecondary: '#FBFBFD',
+  layoutPrimary: '#222222',
+  layoutInverse: '#FBFBFD',
+  error: '#B00020',
+  gray: '#808080',
 } as Colors;
 
 export const lightThemeColors = {
@@ -15,9 +17,11 @@ export const lightThemeColors = {
   textLight: '#fff',
   textMedium: '',
   textDark: '#222222',
-  layoutLight: '',
-  layoutMedium: '#fff',
-  layoutDark: '',
+  layoutSecondary: '#222222',
+  layoutPrimary: '#fff',
+  layoutInverse: '#222222',
+  error: '#B00020',
+  gray: '#808080',
 } as Colors;
 
 export type Colors = {
@@ -26,7 +30,9 @@ export type Colors = {
   textLight: string;
   textMedium: string;
   textDark: string;
-  layoutLight: string;
-  layoutMedium: string;
-  layoutDark: string;
+  layoutSecondary: string;
+  layoutPrimary: string;
+  layoutInverse: string;
+  error: string;
+  gray: string;
 };

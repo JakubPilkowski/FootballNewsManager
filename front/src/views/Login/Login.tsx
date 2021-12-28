@@ -18,6 +18,7 @@ import ThemedButton from 'common/ThemedButton/ThemedButton';
 import useTheme from 'utils/themeProvider/useTheme';
 import ThemedSwitch, { OnSwitchToggle } from 'common/ThemedSwitch/ThemedSwitch';
 import ViewWrapper from 'common/ViewWrapper';
+import ThemedTextfield, { ThemedTextfieldOnChange } from 'common/ThemedTextfield/ThemedTextfield';
 
 type LoginProps = {};
 
@@ -37,6 +38,12 @@ const Login: React.FC<LoginProps> = () => {
 
   const [theme, { changeTheme, scheme }] = useTheme();
   const [checked, setChecked] = useState(scheme === 'dark' || scheme === 'no-preference');
+  const [form, setForm] = useState({
+    username: '',
+    password: '',
+  });
+
+  const { username, password } = form;
 
   useEffect(() => {
     setChecked(scheme === 'dark' || scheme === 'no-preference');
@@ -45,6 +52,10 @@ const Login: React.FC<LoginProps> = () => {
   const handleDarkModeToggle = ({ checked }: OnSwitchToggle) => {
     setChecked(checked);
     changeTheme({ colorScheme: checked ? 'dark' : 'light' });
+  };
+
+  const handleChange = ({ name, value }: ThemedTextfieldOnChange) => {
+    setForm((frm) => ({ ...frm, [name]: value }));
   };
 
   const navigation = useNavigation<LoginNavigationProp>();
@@ -74,6 +85,27 @@ const Login: React.FC<LoginProps> = () => {
   return (
     <ViewWrapper>
       <View>
+        <ThemedTextfield
+          value={username}
+          onChange={handleChange}
+          name="username"
+          label="Login"
+          onClearClick={handleChange}
+          helperText="HelperText"
+          error={username === 'error' ? 'ERROR' : ''}
+        />
+
+        <ThemedTextfield
+          value={password}
+          onChange={handleChange}
+          name="password"
+          label="Password"
+          fieldType="passwordfield"
+          onClearClick={handleChange}
+          isTextSecured
+          isLoading
+        />
+
         <ThemedButton onPress={handleLogin} styles={loginButtonStyles} title={t('login')} />
         <ThemedButton
           onPress={handleNavigate('Register')}
@@ -88,20 +120,20 @@ const Login: React.FC<LoginProps> = () => {
       </View>
       {/* <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
         <Text>Hello</Text>
-      </View>
-      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        </View>
+        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
         <Text>Hello</Text>
-      </View>
-      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        </View>
+        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
         <Text>Hello</Text>
-      </View>
-      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        </View>
+        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
         <Text>Hello</Text>
-      </View>
-      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        </View>
+        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
         <Text>Hello</Text>
-      </View>
-      <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
+        </View>
+        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
         <Text>Hello</Text>
       </View> */}
 

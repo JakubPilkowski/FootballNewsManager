@@ -1,0 +1,46 @@
+import {
+  KeyboardTypeOptions,
+  NativeSyntheticEvent,
+  TextInputProps,
+  TextInputSubmitEditingEventData,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
+
+export type ThemedTextfieldInputAction = { name: string; value: string };
+
+type ThemedTextfieldProps = {
+  label?: string;
+  autoFocus?: boolean;
+  name?: string;
+  value: string;
+  onChange: ({ name, value }: ThemedTextfieldInputAction) => void;
+  disabled?: boolean;
+  wrapperStyles?: ViewStyle;
+  containerStyles?: ViewStyle;
+  inputStyles?: TextStyle;
+  keyboardType?: KeyboardTypeOptions;
+  helperText?: string;
+  error?: string;
+  isTextSecured?: boolean;
+  textSecuredAdornment?: React.ReactNode;
+  textInsecuredAdornment?: React.ReactNode;
+  onTextSecureClick?: () => void;
+  hasEndAdornment?: boolean;
+  isLoading?: boolean;
+  hasAdornment?: boolean;
+  hideClearIcon?: boolean;
+  startAdornment?: React.ReactNode;
+  errorAdornment?: React.ReactNode;
+  clearAdornment?: React.ReactNode;
+  loadingAdornment?: React.ReactNode;
+  customAdornment?: React.ReactNode;
+  fieldType?: 'textfield' | 'passwordfield';
+  onClearClick?: ({ name, value }: ThemedTextfieldInputAction) => void;
+  onFocus?: (name?: string) => void;
+  onBlur?: (name?: string) => void;
+  onSubmit?: (name?: string, props?: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void;
+  props?: TextInputProps;
+};
+
+export default ThemedTextfieldProps;

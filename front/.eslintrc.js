@@ -72,14 +72,14 @@ module.exports = {
     ],
     'react/jsx-closing-tag-location': 1,
     'react/jsx-first-prop-new-line': [1, 'multiline'],
-    'react/jsx-handler-names': [
-      'warn',
-      {
-        eventHandlerPrefix: 'handle',
-        eventHandlerPropPrefix: 'on',
-        checkLocalVariables: true,
-      },
-    ],
+    // 'react/jsx-handler-names': [
+    //   'warn',
+    //   {
+    //     eventHandlerPrefix: 'handle',
+    //     eventHandlerPropPrefix: 'on',
+    //     checkLocalVariables: true,
+    //   },
+    // ],
     'react/jsx-key': [1, { checkFragmentShorthand: true }],
     'react/jsx-no-useless-fragment': [1, { allowExpressions: true }],
 

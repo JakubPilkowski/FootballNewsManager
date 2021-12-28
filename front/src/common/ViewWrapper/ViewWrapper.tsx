@@ -5,10 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useTheme from 'utils/themeProvider/useTheme';
 
 import styles from './ViewWrapper.styles';
-
-type ViewWrapperProps = {
-  style?: ViewStyle;
-};
+import ViewWrapperProps from './ViewWrapper.types';
 
 const ViewWrapper: React.FC<ViewWrapperProps> = ({ style = {}, children }) => {
   const [theme, { scheme }] = useTheme();
@@ -22,7 +19,7 @@ const ViewWrapper: React.FC<ViewWrapperProps> = ({ style = {}, children }) => {
   );
 
   return (
-    <ScrollView style={wrapperStyles}>
+    <ScrollView style={wrapperStyles} keyboardShouldPersistTaps="handled">
       <StatusBar
         barStyle={
           scheme === 'dark' || scheme === 'no-preference' ? 'light-content' : 'dark-content'
