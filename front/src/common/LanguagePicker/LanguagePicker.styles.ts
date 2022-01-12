@@ -1,50 +1,53 @@
+import { Theme } from 'assets/styles/themes';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-export const styles = {
-  backgroundColor: '#e2e2e2',
-  borderColor: 'transparent',
-  width: '40%',
-  minWidth: '40%',
-  maxWidth: '100%',
-  alignSelf: 'flex-end',
-  marginRight: 15,
-  padding: 0,
-  borderRadius: 0,
-} as StyleProp<ViewStyle>;
+type LanguagePickerStyles = {
+  styles: ViewStyle;
+  dropDownContainerStyles: ViewStyle;
+  listItemContainerStyles: ViewStyle;
+  labelStyles: TextStyle;
+  listItemLabelStyles: TextStyle;
+  selectedItemContainerStyles: ViewStyle;
+  selectedItemLabelStyles: TextStyle;
+};
 
-export const containerStyles = {
-  marginBottom: 15,
-} as StyleProp<ViewStyle>;
-
-export const dropDownContainerStyles = {
-  backgroundColor: '#ddd',
-  alignSelf: 'flex-end',
-  borderColor: 'transparent',
-  width: '40%',
-  minWidth: '40%',
-  maxWidth: '100%',
-  right: 20,
-  borderRadius: 0,
-} as StyleProp<ViewStyle>;
-
-export const listItemContainerStyles = {
-  backgroundColor: '#e2e2e2',
-} as StyleProp<ViewStyle>;
-
-export const labelStyles = {
-  color: '#fff',
-  fontSize: 16,
-} as StyleProp<TextStyle>;
-
-export const listItemLabelStyles = {
-  color: '#fff',
-  fontSize: 16,
-} as StyleProp<TextStyle>;
-
-export const selectedItemContainerStyles = {
-  backgroundColor: '#6bba62',
-} as StyleProp<ViewStyle>;
-
-export const selectedItemLabelStyles = {
-  color: '#fff',
-} as StyleProp<TextStyle>;
+export default (theme: Theme): LanguagePickerStyles => {
+  const { colors, fonts } = theme;
+  return {
+    styles: {
+      backgroundColor: 'transparent',
+      borderColor: colors.primary,
+      width: '50%',
+      alignSelf: 'flex-end',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      padding: 0,
+      borderRadius: 0,
+    },
+    dropDownContainerStyles: {
+      backgroundColor: 'transparent',
+      alignSelf: 'flex-end',
+      borderColor: colors.primary,
+      width: '50%',
+      borderRadius: 0,
+    },
+    listItemContainerStyles: {
+      backgroundColor: colors.textDark,
+    },
+    labelStyles: {
+      ...fonts.fontL,
+      color: colors.textLight,
+    },
+    listItemLabelStyles: {
+      ...fonts.fontL,
+      color: colors.textLight,
+    },
+    selectedItemContainerStyles: {
+      backgroundColor: colors.primary,
+    },
+    selectedItemLabelStyles: {
+      color: colors.textLight,
+    },
+  };
+};

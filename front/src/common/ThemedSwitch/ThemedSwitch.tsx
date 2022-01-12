@@ -1,15 +1,7 @@
 import React, { memo } from 'react';
 import ToggleSwitch from 'toggle-switch-react-native';
 
-export type OnSwitchToggle = { checked: boolean; name: string };
-
-type ThemedSwitchProps = {
-  checked: boolean;
-  label: string;
-  name?: string;
-  onToggle: ({ checked, name }: OnSwitchToggle) => void;
-  disabled?: boolean;
-};
+import ThemedSwitchProps from './ThemedSwitch.types';
 
 const ThemedSwitch: React.FC<ThemedSwitchProps> = ({
   checked,
@@ -25,8 +17,6 @@ const ThemedSwitch: React.FC<ThemedSwitchProps> = ({
   return (
     <ToggleSwitch
       isOn={checked}
-      // onColor=""
-      // offColor=""
       label={label}
       labelStyle={{}}
       onToggle={handleToggle}

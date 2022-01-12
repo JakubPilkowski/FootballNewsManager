@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { ViewStyle } from 'react-native';
 
 type AdornmentProps = {
   isTextSecured: boolean;
@@ -14,6 +15,7 @@ type AdornmentProps = {
   isClearField: boolean;
   isError: boolean;
   isPasswordField: boolean;
+  style?: ViewStyle;
 };
 
 export default AdornmentProps;

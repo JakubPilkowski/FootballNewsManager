@@ -39,7 +39,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/logo.png"
       },
-      "versionCode": 1
+      "versionCode": 1,
+      "softwareKeyboardLayoutMode": "pan"
     },
     "plugins": [
       "sentry-expo"

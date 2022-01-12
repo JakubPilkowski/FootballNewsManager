@@ -1,143 +1,146 @@
-import React, { memo, useEffect, useState } from 'react';
-import { StatusBar, View, Text, ViewStyle } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/core';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useMutation } from '@apollo/client';
-
-import { LOGIN, LoginResponse, LoginVariables } from 'api/mutations/auth';
-
-import { RootStackParamList } from 'common/Routing/Routing';
-import LanguagePicker from 'common/LanguagePicker';
-
-import { MainStackParamList } from 'views/Main/Main';
+import React, { memo, useRef } from 'react';
+import { View, TextInput, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { isEmpty } from 'lodash';
+
+import useForm from 'hooks/useForm';
+import useToggle from 'hooks/useToggle';
+
 import { NAMESPACES } from 'i18n/i18n';
-import ThemedButton from 'common/ThemedButton/ThemedButton';
+
 import useTheme from 'utils/themeProvider/useTheme';
-import ThemedSwitch, { OnSwitchToggle } from 'common/ThemedSwitch/ThemedSwitch';
+
+import LanguagePicker from 'common/LanguagePicker';
+import ThemedButton from 'common/ThemedButton/ThemedButton';
 import ViewWrapper from 'common/ViewWrapper';
-import ThemedTextfield, { ThemedTextfieldOnChange } from 'common/ThemedTextfield/ThemedTextfield';
+import ThemedTextfield from 'common/ThemedTextfield';
 
-type LoginProps = {};
+import PlayerIcon from 'assets/svgs/PlayerIcon';
 
-// type LoginNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
+import useLogin from './useLogin';
+import getLoginViewStyles from './Login.styles';
 
-type LoginNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<RootStackParamList, 'Login'>,
-  MaterialBottomTabNavigationProp<MainStackParamList>
->;
-
-const loginButtonStyles = {
-  // marginTop: 40,
-} as ViewStyle;
+type LoginProps = { [key: string]: never };
 
 const Login: React.FC<LoginProps> = () => {
   const { t } = useTranslation<NAMESPACES>('auth');
+  const emailRef = useRef<TextInput>(null);
+  const passwordRef = useRef<TextInput>(null);
+  const [theme] = useTheme();
+  const {
+    underlineButtonStyles,
+    titleStyles,
+    loginButtonWrapper,
+    loginContainer,
+    loginErrorTextStyles,
+  } = getLoginViewStyles(theme);
 
-  const [theme, { changeTheme, scheme }] = useTheme();
-  const [checked, setChecked] = useState(scheme === 'dark' || scheme === 'no-preference');
-  const [form, setForm] = useState({
-    username: '',
-    password: '',
+  const [isTextSecured, { toggle: secureTextToggle }] = useToggle();
+
+  const [
+    {
+      email: { value: emailValue, error: emailError },
+      password: { value: passwordValue, error: passwordError },
+    },
+    { onChange },
+  ] = useForm({
+    email: {
+      value: '',
+      validators: [
+        {
+          validator: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+          error: 'invalid_email',
+        },
+      ],
+      error: '',
+    },
+    password: {
+      value: '',
+      validators: [
+        {
+          validator: /[a-zA-Z0-9].{8,24}/g,
+          error: 'invalid_login_password',
+        },
+      ],
+      error: '',
+    },
   });
 
-  const { username, password } = form;
+  const isLoginButtonDisabled =
+    Boolean(emailError) || isEmpty(emailValue) || Boolean(passwordError) || isEmpty(passwordValue);
 
-  useEffect(() => {
-    setChecked(scheme === 'dark' || scheme === 'no-preference');
-  }, [scheme]);
-
-  const handleDarkModeToggle = ({ checked }: OnSwitchToggle) => {
-    setChecked(checked);
-    changeTheme({ colorScheme: checked ? 'dark' : 'light' });
-  };
-
-  const handleChange = ({ name, value }: ThemedTextfieldOnChange) => {
-    setForm((frm) => ({ ...frm, [name]: value }));
-  };
-
-  const navigation = useNavigation<LoginNavigationProp>();
-
-  const [login] = useMutation<LoginResponse, LoginVariables>(LOGIN);
-
-  const handleNavigate = (route: keyof RootStackParamList | keyof MainStackParamList) => () => {
-    navigation.navigate(route);
-  };
-
-  const handleLogin = () => {
-    login({
-      variables: {
-        email: 'pilkowskijakub@gmail.com',
-        password: 'supersecretpassword',
-      },
-    })
-      .then(({ data }) => {
-        AsyncStorage.setItem('authentication_token', data?.tokenAuth.token as string);
-        navigation.navigate('Main');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const { onLogin, onNavigate, loading, loginError } = useLogin(
+    emailValue,
+    passwordValue,
+    isLoginButtonDisabled
+  );
 
   return (
-    <ViewWrapper>
-      <View>
+    <ViewWrapper loading={loading}>
+      <View style={loginContainer}>
+        <LanguagePicker />
+
+        <PlayerIcon />
+
+        <Text style={titleStyles}>Football News Manager</Text>
+
         <ThemedTextfield
-          value={username}
-          onChange={handleChange}
-          name="username"
-          label="Login"
-          onClearClick={handleChange}
-          helperText="HelperText"
-          error={username === 'error' ? 'ERROR' : ''}
+          value={emailValue}
+          onChange={onChange}
+          name="email"
+          label={t('email')}
+          onClearClick={onChange}
+          onSubmit={() => passwordRef.current?.focus()}
+          props={{
+            returnKeyType: 'next',
+            blurOnSubmit: false,
+            keyboardType: 'email-address',
+          }}
+          ref={emailRef}
+          error={emailError && t(`auth:${emailError}`)}
+          hasErrorAdornment={false}
         />
 
         <ThemedTextfield
-          value={password}
-          onChange={handleChange}
+          value={passwordValue}
+          onChange={onChange}
           name="password"
-          label="Password"
+          label={t('password')}
           fieldType="passwordfield"
-          onClearClick={handleChange}
-          isTextSecured
-          isLoading
+          onClearClick={onChange}
+          onSubmit={onLogin}
+          isTextSecured={isTextSecured}
+          onTextSecureClick={secureTextToggle}
+          props={{
+            returnKeyType: 'go',
+          }}
+          ref={passwordRef}
+          error={passwordError && t(`auth:${passwordError}`)}
+          hasErrorAdornment={false}
         />
 
-        <ThemedButton onPress={handleLogin} styles={loginButtonStyles} title={t('login')} />
         <ThemedButton
-          onPress={handleNavigate('Register')}
-          styles={loginButtonStyles}
+          onPress={onLogin}
+          wrapperStyles={loginButtonWrapper}
+          title={t('login')}
+          disabled={isLoginButtonDisabled}
+        />
+
+        <ThemedButton
+          onPress={onNavigate('Register')}
+          textStyles={underlineButtonStyles}
           title={t('register')}
+          variant="underline"
         />
         <ThemedButton
-          onPress={handleNavigate('ForgotPassword')}
-          styles={loginButtonStyles}
+          onPress={onNavigate('ForgotPassword')}
+          textStyles={underlineButtonStyles}
           title={t('forgot_password')}
+          variant="underline"
         />
-      </View>
-      {/* <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
-        <Text>Hello</Text>
-        </View>
-        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
-        <Text>Hello</Text>
-        </View>
-        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
-        <Text>Hello</Text>
-        </View>
-        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
-        <Text>Hello</Text>
-        </View>
-        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
-        <Text>Hello</Text>
-        </View>
-        <View style={{ backgroundColor: 'red', marginBottom: 20, height: 500 }}>
-        <Text>Hello</Text>
-      </View> */}
 
-      <ThemedSwitch checked={checked} onToggle={handleDarkModeToggle} label="Scheme" />
+        <Text style={loginErrorTextStyles}>{loginError}</Text>
+      </View>
     </ViewWrapper>
   );
 };

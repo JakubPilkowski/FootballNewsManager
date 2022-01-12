@@ -160,14 +160,6 @@ module.exports = {
     '@typescript-eslint/no-implied-eval': 2,
     'no-loss-of-precision': 'off',
     '@typescript-eslint/no-loss-of-precision': 2,
-    'no-magic-numbers': 'off',
-    '@typescript-eslint/no-magic-numbers': [
-      1,
-      {
-        ignoreEnums: true,
-        ignoreNumericLiteralTypes: true,
-      },
-    ],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
   },
