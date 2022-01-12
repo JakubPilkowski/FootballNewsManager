@@ -12,7 +12,7 @@ export default (theme: Theme): LabelStyles => {
     },
     labelStyles: {
       ...fonts.fontM,
-      color: colors.gray,
+      color: colors.textLight,
     },
   };
 };

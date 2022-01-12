@@ -42,14 +42,14 @@ const EyeHiddenIcon = () => {
       </G>
       <G transform="matrix(0.71 0.71 -0.71 0.71 12 11.04)" id="BcdSqC4MYLqikoUQdHBjd">
         <Path
-          stroke="rgb(18,187,239)"
+          stroke="#6bba62"
           strokeWidth={0}
           strokeDasharray="none"
           strokeLinecap="butt"
           strokeDashoffset={0}
           strokeLinejoin="miter"
           strokeMiterlimit={4}
-          fill="rgb(80,5,85)"
+          fill="#6bba62"
           fillRule="nonzero"
           opacity={1}
           vector-effect="non-scaling-stroke"

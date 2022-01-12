@@ -1,43 +1,64 @@
 import React, { memo, ReactNode, useMemo } from 'react';
-import { Text, Pressable, PressableProps, ViewStyle } from 'react-native';
+import {
+  Text,
+  PressableProps,
+  ViewStyle,
+  TextStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 import useTheme from 'utils/themeProvider/useTheme';
-import { themedButtonStyles, themedButtonTextStyles } from './ThemedButton.styles';
+import { wrapper, text } from './ThemedButton.styles';
 
 export type ThemedButtonVariant = 'filled' | 'outlined' | 'underline';
 
 export type ThemedButtonProps = {
-  onPress: PressableProps['onPress'];
+  onPress: TouchableOpacityProps['onPress'];
   title: string;
   children?: ReactNode;
-  styles?: ViewStyle;
-  //   styles?: StyleSheet.NamedStyles<any>;
+  wrapperStyles?: ViewStyle;
+  textStyles?: TextStyle;
   variant?: 'filled' | 'outlined' | 'underline';
   disabled?: boolean;
 };
 
+const defaultStyles = {};
+
 const ThemedButton: React.FC<ThemedButtonProps> = ({
   onPress,
   title,
-  styles = {},
+  wrapperStyles = defaultStyles,
+  textStyles = defaultStyles,
   variant = 'filled',
   disabled = false,
   children,
 }) => {
   const [theme] = useTheme();
 
-  const buttonStyles = useMemo(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  const themedButtonWrapperStyles = useMemo(
     () => ({
-      ...themedButtonStyles(variant, theme),
-      ...styles,
+      ...wrapper(variant, theme, disabled),
+      ...wrapperStyles,
     }),
-    [styles, theme, variant]
+    [disabled, theme, variant, wrapperStyles]
+  );
+
+  const themedButtonTextStyles = useMemo(
+    () => ({
+      ...text(variant, theme),
+      ...textStyles,
+    }),
+    [textStyles, theme, variant]
   );
 
   return (
-    <Pressable disabled={disabled} style={buttonStyles} onPress={onPress}>
-      {children ? children : <Text style={themedButtonTextStyles(variant, theme)}>{title}</Text>}
-    </Pressable>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      disabled={disabled}
+      style={themedButtonWrapperStyles}
+      onPress={onPress}>
+      {children ? children : <Text style={themedButtonTextStyles}>{title}</Text>}
+    </TouchableOpacity>
   );
 };
 

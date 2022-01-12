@@ -21,6 +21,10 @@ export default {
     fontSize: 20,
     lineHeight: 22,
   },
+  fontTitle: {
+    fontSize: 32,
+    lineHeight: 36,
+  },
 } as Fonts;
 
 export type FontType = {
@@ -34,4 +38,5 @@ export type Fonts = {
   fontM: FontType;
   fontL: FontType;
   fontXL: FontType;
+  fontTitle: FontType;
 };

@@ -1,5 +1,5 @@
-import React, { memo, ReactNode } from 'react';
-import { Pressable, ActivityIndicator } from 'react-native';
+import React, { memo } from 'react';
+import { Pressable, ActivityIndicator, View } from 'react-native';
 
 import useTheme from 'utils/themeProvider/useTheme';
 
@@ -24,23 +24,24 @@ const Adornment: React.FC<AdornmentProps> = ({
   isClearField,
   isError,
   isPasswordField,
+  style,
 }) => {
   const [theme] = useTheme();
 
   if (isError) {
-    return <>{errorAdornment || <ErrorIcon />}</>;
+    return <View style={style}>{errorAdornment || <ErrorIcon />}</View>;
   }
 
   if (isLoading) {
     return (
-      <>
+      <View style={style}>
         {loadingAdornment || <ActivityIndicator size="small" color={theme.colors.layoutInverse} />}
-      </>
+      </View>
     );
   }
   if (isPasswordField) {
     return (
-      <Pressable onPress={onTextSecureClick}>
+      <Pressable style={style} onPress={onTextSecureClick}>
         {isTextSecured
           ? textSecuredAdornment || <EyeShowedIcon />
           : textInsecuredAdornment || <EyeHiddenIcon />}
@@ -49,11 +50,15 @@ const Adornment: React.FC<AdornmentProps> = ({
   }
 
   if (isClearField) {
-    return <Pressable onPress={onClearClick}>{clearAdornment || <ClearIcon />}</Pressable>;
+    return (
+      <Pressable style={style} onPress={onClearClick}>
+        {clearAdornment || <ClearIcon />}
+      </Pressable>
+    );
   }
 
   if (customAdornment) {
-    return <>{customAdornment}</>;
+    return <View style={style}>{customAdornment}</View>;
   }
   return null;
 };

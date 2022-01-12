@@ -1,8 +1,14 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import React, {
+  forwardRef,
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import {
   TextInput,
   View,
-  Pressable,
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
 } from 'react-native';
@@ -18,153 +24,163 @@ import Label from './Label';
 import themedTextfieldStyles from './ThemedTextfield.styles';
 import ThemedTextfieldProps from './ThemedTextfield.types';
 
-const ThemedTextfield: React.FC<ThemedTextfieldProps> = ({
-  label,
-  autoFocus = false,
-  name,
-  value,
-  onChange,
-  disabled,
-  wrapperStyles = {},
-  containerStyles = {},
-  inputStyles = {},
-  keyboardType = 'default',
-  fieldType = 'textfield',
-  helperText = '',
-  error = '',
-  isTextSecured = false,
-  textSecuredAdornment,
-  textInsecuredAdornment,
-  onTextSecureClick = () => {},
-  hideClearIcon = false,
-  isLoading = false,
-  startAdornment,
-  errorAdornment,
-  clearAdornment,
-  loadingAdornment,
-  customAdornment,
-  onClearClick,
-  onFocus = () => {},
-  onBlur = () => {},
-  onSubmit = () => {},
-  props,
-}) => {
-  const textInputRef = useRef<TextInput>(null);
+const ThemedTextfield = forwardRef<TextInput, ThemedTextfieldProps>(
+  (
+    {
+      label,
+      autoFocus = false,
+      name,
+      value,
+      onChange,
+      disabled,
+      wrapperStyles = {},
+      containerStyles = {},
+      inputStyles = {},
+      boxStyles = {},
+      adornmentStyles = {},
+      keyboardType = 'default',
+      fieldType = 'textfield',
+      helperText = '',
+      error = '',
+      isTextSecured = false,
+      textSecuredAdornment,
+      textInsecuredAdornment,
+      onTextSecureClick = () => {},
+      hideClearIcon = false,
+      isLoading = false,
+      hasLoadingAdornment = true,
+      startAdornment,
+      errorAdornment,
+      hasErrorAdornment = true,
+      clearAdornment,
+      hasClearAdornment = true,
+      hasPasswordAdornment = true,
+      loadingAdornment,
+      customAdornment,
+      onClearClick,
+      onFocus = () => {},
+      onBlur = () => {},
+      onSubmit = () => {},
+      props,
+    },
+    ref
+  ) => {
+    const textInputRef = useRef<TextInput>(null);
 
-  const [theme, { scheme }] = useTheme();
+    useImperativeHandle(ref, () => textInputRef.current as TextInput);
 
-  const [isFocused, { setTrue, setFalse }] = useToggle(autoFocus);
+    const [theme, { scheme }] = useTheme();
 
-  const {
-    wrapperStyles: wrapper,
-    containerStyles: container,
-    inputStyles: input,
-  } = themedTextfieldStyles(theme);
+    const [isFocused, { setTrue, setFalse }] = useToggle(autoFocus);
 
-  const textfieldWrapperStyles = useMemo(
-    () => ({
-      ...wrapper,
-      ...wrapperStyles,
-    }),
-    [wrapper, wrapperStyles]
-  );
+    const hasAdornment =
+      (!hideClearIcon && Boolean(value)) ||
+      Boolean(error) ||
+      fieldType === 'passwordfield' ||
+      isTextSecured ||
+      isLoading;
 
-  const textfieldContainerStyles = useMemo(
-    () => ({
-      ...container,
-      ...containerStyles,
-    }),
-    [container, containerStyles]
-  );
+    const textfieldStyles = themedTextfieldStyles(theme, {
+      wrapperStyles,
+      containerStyles,
+      boxStyles,
+      inputStyles,
+      adornmentStyles,
+      hasAdornment,
+    });
 
-  const textfieldInputStyles = useMemo(
-    () => ({
-      ...input,
-      ...inputStyles,
-    }),
-    [input, inputStyles]
-  );
-
-  useEffect(() => {
-    if (isFocused && !textInputRef.current?.isFocused()) {
-      textInputRef.current?.focus();
+    const handleFocus = () => {
+      setTrue();
       onFocus(name);
-    } else if (!isFocused && textInputRef.current?.isFocused()) {
-      textInputRef.current.blur();
+    };
+
+    const handleBlur = () => {
+      setFalse();
       onBlur(name);
-    }
-  }, [isFocused, name, onBlur, onFocus]);
+    };
 
-  const handleTextChange = useCallback(
-    (text: string) => {
-      onChange({ name: name || '', value: text });
-    },
-    [name, onChange]
-  );
+    useEffect(() => {
+      if (isFocused && !textInputRef.current?.isFocused()) {
+        textInputRef.current?.focus();
+      } else if (!isFocused && textInputRef.current?.isFocused()) {
+        textInputRef.current.blur();
+      }
+    }, [isFocused, name]);
 
-  const handleClearClick = useCallback(() => {
-    if (isFunction(onClearClick)) onClearClick({ name: name || '', value: '' });
-  }, [name, onClearClick]);
+    const handleTextChange = useCallback(
+      (text: string) => {
+        onChange({ name: name || '', value: text });
+      },
+      [name, onChange]
+    );
 
-  const handleSubmit = useCallback(
-    (props: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
-      onSubmit(name, props);
-    },
-    [name, onSubmit]
-  );
+    const handleClearClick = useCallback(() => {
+      if (isFunction(onClearClick)) onClearClick({ name: name || '', value: '' });
+    }, [name, onClearClick]);
 
-  return (
-    <View style={textfieldWrapperStyles}>
-      <Pressable style={textfieldContainerStyles} onPress={setTrue}>
-        {startAdornment}
-        {label && (
-          <Label
-            label={label}
-            open={isFocused || Boolean(value)}
-            onLabelClick={setTrue}
-            disabled={disabled}
+    const handleSubmit = useCallback(
+      (props: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
+        onSubmit(name, props);
+      },
+      [name, onSubmit]
+    );
+
+    return (
+      <View style={textfieldStyles.wrapperStyles}>
+        <View style={textfieldStyles.containerStyles}>
+          {startAdornment}
+          {label && (
+            <Label
+              label={label}
+              open={isFocused || Boolean(value)}
+              onLabelClick={setTrue}
+              disabled={disabled}
+            />
+          )}
+          <View style={textfieldStyles.boxStyles} />
+          <TextInput
+            value={value}
+            keyboardAppearance={scheme === 'no-preference' || scheme === 'dark' ? 'dark' : 'light'}
+            keyboardType={keyboardType}
+            autoFocus={autoFocus}
+            autoCorrect={false}
+            allowFontScaling={false}
+            autoCompleteType="off"
+            style={textfieldStyles.inputStyles}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            editable={!disabled}
+            selectionColor={theme.colors.primary}
+            ref={textInputRef}
+            onChangeText={handleTextChange}
+            secureTextEntry={isTextSecured}
+            placeholder=""
+            onSubmitEditing={handleSubmit}
+            disableFullscreenUI
+            {...props}
           />
-        )}
-        <TextInput
-          value={value}
-          keyboardAppearance={scheme === 'no-preference' || scheme === 'dark' ? 'dark' : 'light'}
-          keyboardType={keyboardType}
-          autoFocus={autoFocus}
-          autoCorrect={false}
-          allowFontScaling={false}
-          autoCompleteType="off"
-          style={textfieldInputStyles}
-          onFocus={setTrue}
-          onBlur={setFalse}
-          editable={!disabled}
-          selectionColor={theme.colors.primary}
-          ref={textInputRef}
-          onChangeText={handleTextChange}
-          secureTextEntry={isTextSecured}
-          placeholder=""
-          onSubmitEditing={handleSubmit}
-          {...props}
-        />
-        <Adornment
-          isClearField={!hideClearIcon && Boolean(value)}
-          isError={Boolean(error)}
-          isPasswordField={fieldType === 'passwordfield'}
-          isTextSecured={isTextSecured}
-          isLoading={isLoading}
-          onClearClick={handleClearClick}
-          onTextSecureClick={onTextSecureClick}
-          clearAdornment={clearAdornment}
-          customAdornment={customAdornment}
-          errorAdornment={errorAdornment}
-          loadingAdornment={loadingAdornment}
-          textInsecuredAdornment={textInsecuredAdornment}
-          textSecuredAdornment={textSecuredAdornment}
-        />
-      </Pressable>
-      {Boolean(helperText) && <HelperText text={helperText} />}
-      {Boolean(error) && <HelperText text={error} isError={Boolean(error)} />}
-    </View>
-  );
-};
+          <Adornment
+            isClearField={!hideClearIcon && Boolean(value) && hasClearAdornment}
+            isError={Boolean(error) && hasErrorAdornment}
+            isPasswordField={fieldType === 'passwordfield' && hasPasswordAdornment}
+            isTextSecured={isTextSecured}
+            isLoading={isLoading && hasLoadingAdornment}
+            onClearClick={handleClearClick}
+            onTextSecureClick={onTextSecureClick}
+            clearAdornment={clearAdornment}
+            customAdornment={customAdornment}
+            errorAdornment={errorAdornment}
+            loadingAdornment={loadingAdornment}
+            textInsecuredAdornment={textInsecuredAdornment}
+            textSecuredAdornment={textSecuredAdornment}
+            style={textfieldStyles.adornmentStyles}
+          />
+        </View>
+        {Boolean(helperText) && <HelperText text={helperText} />}
+        {Boolean(error) && <HelperText text={error} isError={Boolean(error)} />}
+      </View>
+    );
+  }
+);
 
 export default memo(ThemedTextfield);

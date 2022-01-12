@@ -9,19 +9,23 @@ export const darkThemeColors = {
   layoutInverse: '#FBFBFD',
   error: '#B00020',
   gray: '#808080',
+  buttonColor: '#f9f9f9',
+  star: '#fffa86',
 } as Colors;
 
 export const lightThemeColors = {
   primary: '#6bba62',
   secondary: '',
-  textLight: '#fff',
+  textLight: '#222222',
   textMedium: '',
-  textDark: '#222222',
+  textDark: '#fff',
   layoutSecondary: '#222222',
   layoutPrimary: '#fff',
   layoutInverse: '#222222',
   error: '#B00020',
   gray: '#808080',
+  buttonColor: '#f9f9f9',
+  star: '#6bba62',
 } as Colors;
 
 export type Colors = {
@@ -35,4 +39,6 @@ export type Colors = {
   layoutInverse: string;
   error: string;
   gray: string;
+  buttonColor: string;
+  star: string;
 };

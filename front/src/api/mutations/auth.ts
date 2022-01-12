@@ -1,12 +1,14 @@
 import gql from 'graphql-tag';
 
 type ResponseError = {
-  errors: {
-    [key: string]: Array<{
-      message: string;
-      code: string;
-    }>;
-  };
+  nonFieldErrors: Array<{
+    message: string;
+    code: string;
+  }>;
+  [key: string]: Array<{
+    message: string;
+    code: string;
+  }>;
 };
 
 export type ValidateTokenResponse = {
