@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-type ResponseError = {
+export type ResponseError = {
   nonFieldErrors: Array<{
     message: string;
     code: string;
@@ -50,6 +50,28 @@ export const LOGIN = gql`
       success
       errors
       token
+    }
+  }
+`;
+
+export type RegisterResponse = {
+  register: {
+    success: boolean;
+    errors: ResponseError;
+  };
+};
+
+export type RegisterVariables = {
+  email: string;
+  password1: string;
+  password2: string;
+};
+
+export const REGISTER = gql`
+  mutation Register($email: String!, $password1: String!, $password2: String!) {
+    register(email: $email, password1: $password1, password2: $password2) {
+      success
+      errors
     }
   }
 `;
