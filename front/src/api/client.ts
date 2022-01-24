@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import typePolicies from './typePolicies';
 
 const httpLink = createHttpLink({
-  uri: 'http://67cb-81-190-133-87.ngrok.io/graphql',
+  uri: 'http://a1d7-81-190-133-87.ngrok.io/graphql',
 });
 
 const authLink = setContext(async (_, { headers }) => {
@@ -26,8 +26,8 @@ const client = new ApolloClient({
   }),
 });
 
-client.onResetStore(async () => {
-  AsyncStorage.removeItem('authentication_token');
-});
+// client.onResetStore(async () => {
+//   AsyncStorage.removeItem('authentication_token');
+// });
 
 export default client;

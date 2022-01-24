@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 import alpha from 'color-alpha';
 
 import { Theme } from 'assets/styles/themes';
@@ -6,10 +6,14 @@ import { Theme } from 'assets/styles/themes';
 type LoadingDialogStyles = {
   wrapperOuterStyles: ViewStyle;
   wrapperInnerStyles: ViewStyle;
+  titleStyles: TextStyle;
 };
 
-export default function getLoadingDialogStyles(theme: Theme): LoadingDialogStyles {
-  const { colors } = theme;
+export default function getLoadingDialogStyles(
+  theme: Theme,
+  isTitle: boolean
+): LoadingDialogStyles {
+  const { colors, fonts, layout } = theme;
   return {
     wrapperOuterStyles: {
       flex: 1,
@@ -20,7 +24,8 @@ export default function getLoadingDialogStyles(theme: Theme): LoadingDialogStyle
     wrapperInnerStyles: {
       backgroundColor: colors.textLight,
       borderRadius: 20,
-      padding: 40,
+      paddingVertical: 40,
+      paddingHorizontal: isTitle ? 50 : 40,
       alignItems: 'center',
       shadowColor: colors.primary,
       shadowOffset: {
@@ -30,6 +35,11 @@ export default function getLoadingDialogStyles(theme: Theme): LoadingDialogStyle
       shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
+    },
+    titleStyles: {
+      ...fonts.fontM,
+      color: colors.textDark,
+      marginTop: layout.marginS,
     },
   };
 }
