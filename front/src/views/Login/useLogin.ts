@@ -11,6 +11,7 @@ import { LOGIN, LoginResponse, LoginVariables } from 'api/mutations/auth';
 import { RootStackParamList } from 'common/Routing/Routing';
 
 import { MainStackParamList } from 'views/Main/Main';
+import useAuthentication from 'common/Routing/useAuthentication';
 
 type LoginNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<RootStackParamList, 'Login'>,
@@ -19,10 +20,11 @@ type LoginNavigationProp = CompositeNavigationProp<
 export default function useLogin(email: string, password: string, isDisabled: boolean) {
   const { t } = useTranslation();
   const navigation = useNavigation<LoginNavigationProp>();
+  const { login } = useAuthentication();
 
   const [loginError, setLoginError] = useState<string | null>(null);
 
-  const [login, { loading }] = useMutation<LoginResponse, LoginVariables>(LOGIN);
+  const [tokenAuth, { loading }] = useMutation<LoginResponse, LoginVariables>(LOGIN);
 
   const onNavigate = useCallback(
     (route: keyof RootStackParamList | keyof MainStackParamList) => () => {
@@ -34,10 +36,8 @@ export default function useLogin(email: string, password: string, isDisabled: bo
   const onLogin = useCallback(() => {
     if (isDisabled) return;
     setLoginError('');
-    login({
+    tokenAuth({
       variables: {
-        // email: 'pilkowskijakub@gmail.com',
-        // password: 'supersecretpassword',
         email,
         password,
       },
@@ -46,14 +46,15 @@ export default function useLogin(email: string, password: string, isDisabled: bo
         if (data?.tokenAuth.errors) {
           setLoginError(t(`auth:${data.tokenAuth.errors.nonFieldErrors[0]?.code}`));
         } else {
-          AsyncStorage.setItem('authentication_token', data?.tokenAuth.token as string);
-          onNavigate('Main')();
+          login(data?.tokenAuth.token as string);
+          // AsyncStorage.setItem('authentication_token', data?.tokenAuth.token as string);
+          // onNavigate('Main')();
         }
       })
       .catch((err: any) => {
         if (err instanceof ApolloError) setLoginError(err.message);
       });
-  }, [email, isDisabled, login, onNavigate, password, t]);
+  }, [isDisabled, tokenAuth, email, password, t, login]);
 
   return {
     onLogin,

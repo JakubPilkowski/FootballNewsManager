@@ -5,6 +5,7 @@
     "slug": "footballNewsManager",
     "version": "1.0.0",
     "sdkVersion": "42.0.0",
+    "scheme": "fnm",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#FFFFFF",
     "primaryColor": "#6bba62",

@@ -9,8 +9,10 @@ import client from 'api/client';
 import i18n from 'i18n/i18n';
 
 import Routing from 'common/Routing';
+import Layout from 'common/Layout';
 
 import ThemeProvider from 'utils/themeProvider/ThemeProvider';
+import AuthenticationProvider from 'common/Routing/AuthenticationProvider';
 
 // Sentry.init({
 //   dsn: 'https://c7ff552fc1e44978889493cba750543c@o982648.ingest.sentry.io/5937927',
@@ -23,7 +25,11 @@ export default function App() {
       <ApolloProvider client={client}>
         <SafeAreaProvider>
           <ThemeProvider>
-            <Routing />
+            <Layout>
+              <AuthenticationProvider>
+                <Routing />
+              </AuthenticationProvider>
+            </Layout>
           </ThemeProvider>
         </SafeAreaProvider>
       </ApolloProvider>

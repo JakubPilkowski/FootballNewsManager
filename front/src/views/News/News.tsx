@@ -9,6 +9,7 @@ import client from 'api/client';
 import { RootStackParamList } from 'common/Routing/Routing';
 
 import { MainStackParamList } from 'views/Main/Main';
+import useAuthentication from 'common/Routing/useAuthentication';
 
 type NewsNavigationProp = CompositeNavigationProp<
   MaterialBottomTabNavigationProp<MainStackParamList, 'News'>,
@@ -17,14 +18,12 @@ type NewsNavigationProp = CompositeNavigationProp<
 
 const News = () => {
   const navigation = useNavigation<NewsNavigationProp>();
+  const { logout } = useAuthentication();
 
-  const handleLogout = () => {
-    client.resetStore().then(() => navigation.navigate('Login'));
-  };
   return (
     <View>
       <Text style={{ marginTop: 50 }}>News</Text>
-      <Button onPress={handleLogout} title="Logout" />
+      <Button onPress={logout} title="Logout" />
     </View>
   );
 };

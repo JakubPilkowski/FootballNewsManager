@@ -10,5 +10,7 @@
     "es": "🇪🇸  Spanish",
     "it": "🇮🇹  Italish",
     "de": "🇩🇪  German",
-    "fr": "🇫🇷  French"
+    "fr": "🇫🇷  French",
+    "smth_went_wrong": "Algo salió mal",
+    "loading": "Loading" 
 }

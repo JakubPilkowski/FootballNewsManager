@@ -49,7 +49,7 @@ export default function useLogin(
           const firstError = errorKeys[0];
           setRegisterError(t(`auth:register_${firstError}_${errors[firstError][0].code}`));
         } else {
-          navigation.replace('ConfirmEmail');
+          navigation.replace('AccountVerification', { email });
         }
       })
       .catch((err: any) => {

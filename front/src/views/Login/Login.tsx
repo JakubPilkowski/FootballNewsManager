@@ -35,7 +35,7 @@ const Login: React.FC<LoginProps> = () => {
     loginErrorTextStyles,
   } = getLoginViewStyles(theme);
 
-  const [isTextSecured, { toggle: secureTextToggle }] = useToggle();
+  const [isTextSecured, { toggle: secureTextToggle }] = useToggle(true);
 
   const [
     {

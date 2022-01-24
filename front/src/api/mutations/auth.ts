@@ -75,3 +75,43 @@ export const REGISTER = gql`
     }
   }
 `;
+
+export type ResendActivationEmailResponse = {
+  resendActivationEmail: {
+    success: boolean;
+    errors: ResponseError;
+  };
+};
+
+export type ResendActivationEmailVariables = {
+  email: string;
+};
+
+export const RESEND_ACTIVATION_EMAIL = gql`
+  mutation ResendActivationEMail($email: String!) {
+    resendActivationEmail(email: $email) {
+      success
+      errors
+    }
+  }
+`;
+
+export type VerifyAccountResponse = {
+  verifyAccount: {
+    success: boolean;
+    errors: ResponseError;
+  };
+};
+
+export type VerifyAccountVariables = {
+  token: string;
+};
+
+export const VERIFY_ACCOUNT = gql`
+  mutation VerifyAccount($token: String!) {
+    verifyAccount(token: $token) {
+      success
+      errors
+    }
+  }
+`;
