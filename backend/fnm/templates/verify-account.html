@@ -1,0 +1,50 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Account Verification</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
+    </style>
+    <link rel="icon" type="image/png" href="{% static 'images/fnm_ball.png' %}" />
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"" />
+</head>
+<body >
+    <h1 class=" brand">
+    <b><i>Football News Manager</i></b>
+    </h1>
+    <img class="logo" src="{% static 'images/fnm_logo_white.png' %}" />
+
+    {% if loading %}
+    <h3 id="loader" class="loader">{% trans "loading" %}...</h3>
+    {% elif status and not loading %}
+    <div id="content">
+        <h3 id="title" class="title">
+            {% trans "register_complete" %}
+        </h3>
+        <p id="description" class="description">
+            {% trans 'register_complete_message' %}
+        </p>
+        <a id="link" class="action-link">
+            {% trans 'move_to_login_view' %}
+        </a>
+    </div>
+    {% else %}
+    <div id="content">
+        <h3 id="title" class="title">
+            {% trans 'register_failure' %}
+        </h3>
+        <p id="description" class="description">
+            {% trans 'register_failure_message' %}
+        </p>
+        <a id="link" class="action-link">
+            {% trans 'send_activation_link' %}
+        </a>
+    </div>
+    {% endif %}
+    </body>
+
+</html>

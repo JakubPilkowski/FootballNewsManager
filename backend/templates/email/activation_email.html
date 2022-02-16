@@ -1,13 +1,5 @@
 {% load static %}
 {% load i18n %}
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
-  </style>
-</head>
 
 <body style="
       background-color: #6bba62;
@@ -17,33 +9,25 @@
       text-align: center;
       margin: 0;
     ">
-  <h1>
-    <b><i>{{app_name}}</i></b>
+  <h1 style="font-size: 48px;">
+    <b><i>Football News Manager</i></b>
   </h1>
-  <img style="display: block; margin: auto; height: 200px; width: 200px;" src={{logo_url}} />
+  <img style="display: block; margin: auto; width: 250px;"
+    src="{{protocol}}://{{domain}}{% static 'images/fnm_logo_white.png' %}" />
 
   <h1>{% translate 'hello' %} {{ user.email }}</h3>
 
-    <!-- <p>{{protocol}}</p> http -->
-    <!-- <p>{{site_name}}</p> -->
-    <!-- <p>{{domain}}</p> localhost:8000 -->
-    <!-- potrzebne do ogarnięcia obrazków -->
-
     <h3>
-      {% translate 'complete_registration' %}
+      {% translate 'activate_account' %}
     </h3>
-    <a style="text-decoration: none; color: #6bba62; font-size: 1.5em; letter-spacing: 0.1em;  outline: none;
+    <a style="color: #6bba62; font-size: 1.5em; letter-spacing: 0.1em; outline: none;
         border: none;
         background-color: #232b2b;
         padding: 15px 20px;
-        cursor: pointer;
         margin: auto;
-        display: block;
         border-radius: 4px;
         width: max-content;
-        " href="">
-      {% translate 'activate_account' %}
+        " href="{{protocol}}://{{domain}}/verify-account/?token={{token}}&email={{user.email}}">
+      {% translate 'confirm_email' %}
     </a>
 </body>
-
-</html>

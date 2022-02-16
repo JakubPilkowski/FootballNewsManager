@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-16 21:00+0100\n"
+"PO-Revision-Date: 2022-01-25 21:27+0000\n"
+"Last-Translator: Anonymous User <fnmsuperuser@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\backend\settings.py:188
+msgid "English"
+msgstr "Angielski"
+
+#: .\backend\settings.py:189
+msgid "German"
+msgstr "Niemiecki"
+
+#: .\backend\settings.py:190
+msgid "French"
+msgstr "Francuski"
+
+#: .\backend\settings.py:191
+msgid "Spanish"
+msgstr "Hiszpański"
+
+#: .\backend\settings.py:192
+msgid "Italian"
+msgstr "Włoski"
+
+#: .\backend\settings.py:193
+msgid "Polish"
+msgstr "Polski"
+
+#: .\fnm\models.py:44
+msgid "user_is_staff_help_text"
+msgstr ""
+"Określa, czy użytkownik może zalogować się do tej witryny administracyjnej."
+
+#: .\fnm\models.py:48
+msgid "user_is_active_help_text"
+msgstr ""
+"Określa, czy ten użytkownik powinien być traktowany jako aktywny. Odznacz to "
+"zamiast usuwać konta."
+
+#: .\fnm\templates\index.html:18 .\fnm\templates\verify.html:38
+msgid "register_failure_message"
+msgstr "Kliknij przycisk poniżej aby przejść do aplikacji"
+
+#: .\fnm\templates\verify.html:19
+msgid "loading"
+msgstr "Ładowanie"
+
+#: .\fnm\templates\verify.html:23
+msgid "register_complete"
+msgstr "Rejestracja zakończona"
+
+#: .\fnm\templates\verify.html:26
+msgid "register_complete_message"
+msgstr ""
+"Brawo! Twoja rejestracja została pomyślnie ukończona. Możesz teraz zalogować "
+"się do aplikacji."
+
+#: .\fnm\templates\verify.html:29
+msgid "move_to_login_view"
+msgstr "Przejdź do ekranu logowania"
+
+#: .\fnm\templates\verify.html:35
+msgid "register_failure"
+msgstr "Rejestracja nieudana"
+
+#: .\fnm\templates\verify.html:41
+msgid "send_activation_link"
+msgstr "Wyślij link aktywacyjny"
+
+#: .\templates\email\activation_email.html:26
+msgid "hello"
+msgstr "Witaj"
+
+#: .\templates\email\activation_email.html:29
+msgid "activate_account"
+msgstr "Aktywacja konta"
+
+#: .\templates\email\activation_email.html:39
+msgid "confirm_email"
+msgstr "Potwierdź email"
+
+#: .\templates\email\password_reset_email.html:21
+msgid "football_news_manager"
+msgstr "Football News Manager"
+
+#: .\templates\email\password_reset_email.html:26
+#: .\templates\email\password_reset_email.html:45
+msgid "reset_password"
+msgstr "Reset hasła"
+
+#: .\templates\email\password_reset_email.html:28
+msgid "reset_password_message"
+msgstr "Kliknij przycisk poniżej aby przejść do aplikacji"
+
+#: .\templates\email\password_reset_email.html:47
+msgid "reset_password_accidental_request"
+msgstr "Jeśli nie złożyłeś prośby o reset hasła, możesz zignorować ten e-mail"
+
+#~ msgid "register_failed_message"
+#~ msgstr "Kliknij przycisk poniżej aby przejść do aplikacji"
+
+#~ msgid "password_reset_process"
+#~ msgstr "Reset hasła"

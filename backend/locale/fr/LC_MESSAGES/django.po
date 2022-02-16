@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-16 21:00+0100\n"
+"PO-Revision-Date: 2022-01-25 21:21+0000\n"
+"Last-Translator: Anonymous User <fnmsuperuser@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\backend\settings.py:188
+msgid "English"
+msgstr "Anglais"
+
+#: .\backend\settings.py:189
+msgid "German"
+msgstr "Allemand"
+
+#: .\backend\settings.py:190
+msgid "French"
+msgstr "français"
+
+#: .\backend\settings.py:191
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: .\backend\settings.py:192
+msgid "Italian"
+msgstr "Italien"
+
+#: .\backend\settings.py:193
+msgid "Polish"
+msgstr "polonais"
+
+#: .\fnm\models.py:44
+msgid "user_is_staff_help_text"
+msgstr "Indique si l'utilisateur peut se connecter à ce site d'administration."
+
+#: .\fnm\models.py:48
+msgid "user_is_active_help_text"
+msgstr ""
+"Indique si cet utilisateur doit être traité comme actif. Décochez cette "
+"option au lieu de supprimer des comptes."
+
+#: .\fnm\templates\index.html:18 .\fnm\templates\verify.html:38
+msgid "register_failure_message"
+msgstr "Cliquez sur le bouton ci-dessous pour accéder à l'application"
+
+#: .\fnm\templates\verify.html:19
+msgid "loading"
+msgstr "Le chargement"
+
+#: .\fnm\templates\verify.html:23
+msgid "register_complete"
+msgstr "Inscription complète"
+
+#: .\fnm\templates\verify.html:26
+msgid "register_complete_message"
+msgstr ""
+"Marche à suivre! Votre inscription a été complétée avec succès. Vous pouvez "
+"vous connecter à l'application maintenant."
+
+#: .\fnm\templates\verify.html:29
+msgid "move_to_login_view"
+msgstr "Aller à l'écran de connexion"
+
+#: .\fnm\templates\verify.html:35
+msgid "register_failure"
+msgstr "Échec de l'enregistrement"
+
+#: .\fnm\templates\verify.html:41
+msgid "send_activation_link"
+msgstr "Envoyer le lien d'activation"
+
+#: .\templates\email\activation_email.html:26
+msgid "hello"
+msgstr "Bonjour"
+
+#: .\templates\email\activation_email.html:29
+msgid "activate_account"
+msgstr "Activer le compte"
+
+#: .\templates\email\activation_email.html:39
+msgid "confirm_email"
+msgstr "Confirm Email"
+
+#: .\templates\email\password_reset_email.html:21
+msgid "football_news_manager"
+msgstr "Football News Manager"
+
+#: .\templates\email\password_reset_email.html:26
+#: .\templates\email\password_reset_email.html:45
+msgid "reset_password"
+msgstr "Reset Password"
+
+#: .\templates\email\password_reset_email.html:28
+msgid "reset_password_message"
+msgstr "Cliquez sur le bouton ci-dessous pour accéder à l'application"
+
+#: .\templates\email\password_reset_email.html:47
+msgid "reset_password_accidental_request"
+msgstr ""
+"Si vous n'avez pas envoyé de demande de réinitialisation de mot de passe, "
+"vous pouvez ignorer cet e-mail"
+
+#~ msgid "register_failed_message"
+#~ msgstr "Cliquez sur le bouton ci-dessous pour accéder à l'application"

@@ -1,0 +1,46 @@
+body {
+  background-color: #6bba62;
+  padding: 50px;
+  color: #232b2b;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+.brand {
+  font-size: 64px;
+}
+
+.logo {
+  display: block;
+  margin: auto;
+  width: 80%;
+  min-width: 250px;
+}
+
+.loader {
+  font-size: 48px;
+}
+
+.title {
+  font-size: 48px;
+}
+
+.description {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.action-link {
+  color: #6bba62;
+  font-size: 1.5em;
+  outline: none;
+  border: none;
+  background-color: #232b2b;
+  padding: 15px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+  width: max-content;
+}
