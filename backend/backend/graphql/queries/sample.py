@@ -1,7 +1,7 @@
 from graphene import relay, ObjectType
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
-from backend.fnm.models import Category, Ingredient
+from fnm.models import Category, Ingredient
 
 class CategoryNode(DjangoObjectType):
     class Meta:
